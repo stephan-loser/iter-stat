@@ -14,9 +14,9 @@ def load_data():
              data.append(df[['Status', 'Original estimate']])
  if data:
      result = pd.concat(data, ignore_index=True)
-     result.to_csv('result.csv', index=False)
-     grouped = result.groupby('Status')['Original estimate'].sum().div(8).div(3600).reset_index()
+     grouped = result.groupby('Status')['Original estimate'].sum().div(8).div(3600).round(3).reset_index()
      grouped.to_csv('grouped.csv', index=False)
+     print(grouped)
  else:
      print("No CSV files found with 'Status' and 'Original estimate' columns.")
 
