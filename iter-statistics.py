@@ -5,7 +5,8 @@ def efforts_by_status():
  data = []
  directory = os.getcwd() # Get the current working directory
  for filename in os.listdir(directory):
-     if filename.endswith(".csv"):
+     if filename.endswith(".csv") and not filename.startswith(("grouped", "blacklisted")):
+         print(filename)
          df = pd.read_csv(os.path.join(directory, filename), usecols=['Status', 'Original estimate'])
          if 'Status' in df.columns and 'Original estimate' in df.columns:
              df = df.sort_values('Status')
